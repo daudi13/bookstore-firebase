@@ -22,7 +22,8 @@ const BookstoreContext = ({ children }) => {
 
   return (
     <Bookstore.Provider value={{
-      books
+      books,
+      booksCollectionRef
     }}>
       {children}
     </Bookstore.Provider>

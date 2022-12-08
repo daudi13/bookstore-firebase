@@ -1,11 +1,12 @@
 import { useState } from 'react'; 
-import { doc, updateDoc } from 'firebase/firestore';
+import { addDoc, doc, updateDoc } from 'firebase/firestore';
 import './App.css';
 import { BookstoreState } from './BookstoreContex';
 import db from './firebase';
+import { async } from '@firebase/util';
 
 function App() {
-  const { books } = BookstoreState();
+  const { books, booksCollectionRef } = BookstoreState();
   const [title, setTitle] = useState("")
   const [bookAuthor, setBookAuthor] = useState("");
   const [genre, setGenre] = useState("");
@@ -24,43 +25,47 @@ function App() {
     await updateDoc(booksDoc, newFields);
   }
 
+  const addNewBook = async () => {
+    await addDoc(booksCollectionRef, {bookName: title, author: bookAuthor, genre: genre, currentChapter: currentChapter, totalChapters: totalChapters})
+  }
+
   console.log(books)
   return (
     <div className="App">
       <input
       placeholder="Add book title"
       value={title}
-      on
+      onChange={(e) =>{ setTitle( e.target.value)} }
       />
       <input
       placeholder="Add book author"
       value={bookAuthor}
-      on
+      onChange={(e) => { setBookAuthor(e.target.value)}}
       />
       <input
       placeholder="Add book genres"
       value={genre}
-      on
+      onChange={(e) => { setGenre(e.target.value)}}
       />
       <input
       placeholder="Add total chapters"
       type="number"
       value={totalChapters}
-      on
+      onChange={(e) => {setTotalChapters(e.target.value)}}
       />
       <input
       placeholder="Add current"
       type="number"
       value={currentChapter}
-      on
+      onChange={(e) => { setCurrentChapter(e.target.value)} }
       />
+      <button onClick={addNewBook}>Add book</button>
       {
         books.map((book) => {
           return (
             <div key={book.id}>
               <h3>Book name: {book.bookName}</h3>
               <h3>Author: {book.author}</h3>
-              <h3>Book name: {book.bookName}</h3>
               <h3>Total chapters: {book.totalChapters}</h3>
               <h3>Total chapters: {book.currentChapter}</h3>
               <div>
