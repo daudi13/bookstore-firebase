@@ -1,8 +1,76 @@
+import { useState } from 'react'; 
+import { doc, updateDoc } from 'firebase/firestore';
 import './App.css';
+import { BookstoreState } from './BookstoreContex';
+import db from './firebase';
 
 function App() {
+  const { books } = BookstoreState();
+  const [title, setTitle] = useState("")
+  const [bookAuthor, setBookAuthor] = useState("");
+  const [genre, setGenre] = useState("");
+  const [currentChapter, setCurrentChapter] = useState(0);
+  const [totalChapters, setTotalChapters] = useState(0);
+
+  const IncreaseChapters = async (id, chapter, totalChapters) => {
+    const booksDoc = doc(db, "books", id);
+    const newFields = { currentChapter: +(chapter) < totalChapters ? +(chapter) + 1 : totalChapters};
+    await updateDoc(booksDoc, newFields);
+  }
+
+  const decreaseChapters = async (id, chapter) => {
+    const booksDoc = doc(db, "books", id);
+    const newFields = { currentChapter: +(chapter) > 0 ? +(chapter) - 1 : 0 };
+    await updateDoc(booksDoc, newFields);
+  }
+
+  console.log(books)
   return (
     <div className="App">
+      <input
+      placeholder="Add book title"
+      value={title}
+      on
+      />
+      <input
+      placeholder="Add book author"
+      value={bookAuthor}
+      on
+      />
+      <input
+      placeholder="Add book genres"
+      value={genre}
+      on
+      />
+      <input
+      placeholder="Add total chapters"
+      type="number"
+      value={totalChapters}
+      on
+      />
+      <input
+      placeholder="Add current"
+      type="number"
+      value={currentChapter}
+      on
+      />
+      {
+        books.map((book) => {
+          return (
+            <div key={book.id}>
+              <h3>Book name: {book.bookName}</h3>
+              <h3>Author: {book.author}</h3>
+              <h3>Book name: {book.bookName}</h3>
+              <h3>Total chapters: {book.totalChapters}</h3>
+              <h3>Total chapters: {book.currentChapter}</h3>
+              <div>
+              <button onClick={() => IncreaseChapters(book.id, book.currentChapter, book.totalChapters)}>+chapters</button>
+              <button onClick={() => decreaseChapters(book.id, book.currentChapter)}>-chapters</button>
+              </div>
+            </div>
+          )
+        })
+      }
     </div>
   );
 }
