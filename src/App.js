@@ -72,6 +72,7 @@ function App() {
               <h3>Author: {book.author}</h3>
               <h3>Total chapters: {book.totalChapters}</h3>
               <h3>Total chapters: {book.currentChapter}</h3>
+              <h3>Percentage: {((book.currentChapter/book.totalChapters)*100).toFixed(0)}%</h3>
               <div>
               <button onClick={() => IncreaseChapters(book.id, book.currentChapter, book.totalChapters)}>+chapters</button>
               <button onClick={() => decreaseChapters(book.id, book.currentChapter)}>-chapters</button>

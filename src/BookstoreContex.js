@@ -17,6 +17,7 @@ const BookstoreContext = ({ children }) => {
       setBooks(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
     }
     getBooks();
+    // eslint-disable-next-line
   }, [books])
   
 
