@@ -17,7 +17,7 @@ const BookstoreContext = ({ children }) => {
       setBooks(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
     }
     getBooks();
-  }, [booksCollectionRef])
+  }, [books])
   
 
   return (

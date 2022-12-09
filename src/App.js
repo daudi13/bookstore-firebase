@@ -3,7 +3,6 @@ import { addDoc, doc, updateDoc } from 'firebase/firestore';
 import './App.css';
 import { BookstoreState } from './BookstoreContex';
 import db from './firebase';
-import { async } from '@firebase/util';
 
 function App() {
   const { books, booksCollectionRef } = BookstoreState();
@@ -26,7 +25,12 @@ function App() {
   }
 
   const addNewBook = async () => {
-    await addDoc(booksCollectionRef, {bookName: title, author: bookAuthor, genre: genre, currentChapter: currentChapter, totalChapters: totalChapters})
+    await addDoc(booksCollectionRef, { bookName: title, author: bookAuthor, genre: genre, currentChapter: currentChapter, totalChapters: totalChapters })
+    setGenre("");
+    setTitle("");
+    setTotalChapters("");
+    setBookAuthor("")
+    setCurrentChapter("")
   }
 
   console.log(books)
