@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, onSnapshot } from 'firebase/firestore';
 import db from './firebase'
 
 const Bookstore = createContext();
@@ -10,15 +10,21 @@ const BookstoreContext = ({ children }) => {
 
 
   const booksCollectionRef = collection(db, "books");
-
+  
   useEffect(() => {
-    const getBooks = async () => {
-      const data = await getDocs(booksCollectionRef);
-      setBooks(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-    }
-    getBooks();
-    // eslint-disable-next-line
-  }, [books])
+    const booksCollectionRef = collection(db, "books");
+    const unsubScribe = onSnapshot(booksCollectionRef, (querySnapshot) => {
+      let bookArr = []
+      querySnapshot.forEach((doc) => {
+        bookArr.push({ ...doc.data(), id: doc.id })
+      });
+      setBooks(bookArr)
+    })
+
+    return () => unsubScribe()
+  }, [])
+
+  console.log(books)
   
 
   return (
