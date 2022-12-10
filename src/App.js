@@ -25,7 +25,7 @@ function App() {
   }
 
   const addNewBook = async () => {
-    await addDoc(booksCollectionRef, { bookName: title, author: bookAuthor, genre: genre, currentChapter: currentChapter, totalChapters: totalChapters })
+    await addDoc(booksCollectionRef, { bookName: title, author: bookAuthor, genre: genre, currentChapter: currentChapter, TotalChapters: totalChapters })
     setGenre("");
     setTitle("");
     setTotalChapters("");
@@ -70,11 +70,11 @@ function App() {
             <div key={book.id}>
               <h3>Book name: {book.bookName}</h3>
               <h3>Author: {book.author}</h3>
-              <h3>Total chapters: {book.totalChapters}</h3>
+              <h3>Total chapters: {book.TotalChapters}</h3>
               <h3>Total chapters: {book.currentChapter}</h3>
-              <h3>Percentage: {((book.currentChapter/book.totalChapters)*100).toFixed(0)}%</h3>
+              <h3>Percentage: {((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%</h3>
               <div>
-              <button onClick={() => IncreaseChapters(book.id, book.currentChapter, book.totalChapters)}>+chapters</button>
+              <button onClick={() => IncreaseChapters(book.id, book.currentChapter, book.TotalChapters)}>+chapters</button>
               <button onClick={() => decreaseChapters(book.id, book.currentChapter)}>-chapters</button>
               </div>
             </div>
