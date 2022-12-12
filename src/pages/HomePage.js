@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
 import { addDoc, doc, updateDoc } from 'firebase/firestore';
-import './App.css';
-import { BookstoreState } from './BookstoreContex';
-import db from './firebase';
+import { BookstoreState } from '../BookstoreContex';
+import db from '../firebase';
+import { makeStyles } from 'tss-react/mui';
 
-const AddBook = () => {
+
+const HomePage = () => {
+
+  const useStyle = makeStyles()(() => ({
+    App: {
+      textAlign: "center"
+    }
+  }))
+
+
   const { books, booksCollectionRef } = BookstoreState();
   const [title, setTitle] = useState("")
   const [bookAuthor, setBookAuthor] = useState("");
@@ -33,9 +42,10 @@ const AddBook = () => {
     setCurrentChapter("")
   }
 
-  console.log(books)
+  const { classes } = useStyle();
+
   return (
-    <div className="App">
+    <div className={classes.App}>
       <input
       placeholder="Add book title"
       value={title}
@@ -85,4 +95,4 @@ const AddBook = () => {
   );
 }
 
-export default AddBook
+export default HomePage

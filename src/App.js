@@ -1,5 +1,8 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { makeStyles } from 'tss-react/mui';
 import React from 'react'; 
+import HomePage from './pages/HomePage';
+import Header from './components/Header';
 
 
 function App() {
@@ -7,16 +10,22 @@ function App() {
   const useStyle = makeStyles()(() => ({
     App: {
       textAlign: "center",
-      color: "white"
     }
   }))
 
   const { classes } = useStyle();
 
   return (
-    <div className={classes.App}>
-
-    </div>
+    <BrowserRouter>      
+      <div className={classes.App}>
+        <Header/>
+        <div>
+          <Routes>
+            <Route path='/' element={<HomePage/>} exact />
+          </Routes>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 

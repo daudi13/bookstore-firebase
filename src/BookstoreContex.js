@@ -24,8 +24,6 @@ const BookstoreContext = ({ children }) => {
 
     return () => unsubScribe()
   }, [])
-
-  console.log(books)
   
 
   return (
