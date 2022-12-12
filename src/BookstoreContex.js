@@ -6,7 +6,8 @@ const Bookstore = createContext();
 
 const BookstoreContext = ({ children }) => {
 
-  const [books, setBooks] = useState([])
+  const [books, setBooks] = useState([]);
+  const [user, setUser] = useState(null);
 
 
   const booksCollectionRef = collection(db, "books");
