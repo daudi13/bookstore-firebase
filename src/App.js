@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { makeStyles } from 'tss-react/mui';
 import React from 'react'; 
-import HomePage from './pages/HomePage';
 import Header from './components/Header';
+import LoginPage from './pages/LoginPage';
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
         <Header/>
         <div>
           <Routes>
-            <Route path='/' element={<HomePage/>} exact />
+            <Route path='/' element={<LoginPage/>} exact />
           </Routes>
         </div>
       </div>
