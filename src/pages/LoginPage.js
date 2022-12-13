@@ -8,6 +8,7 @@ import React from 'react'
 import { makeStyles } from 'tss-react/mui';
 import GoogleButton from 'react-google-button';
 import LoginTab from '../components/LoginTab';
+import SignUpTab from '../components/SignUpTab';
 
 const LoginPage = () => {
   const [value, setValue] = React.useState('1');
@@ -33,7 +34,7 @@ const LoginPage = () => {
             </Tabs>
           </Box>
           <TabPanel value='1'><LoginTab/></TabPanel>
-          <TabPanel value='2'>2</TabPanel>
+          <TabPanel value='2'><SignUpTab/></TabPanel>
           <Box className={classes.google}>
             <span>OR</span>
             <GoogleButton
