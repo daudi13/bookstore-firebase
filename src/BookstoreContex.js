@@ -23,7 +23,8 @@ const BookstoreContext = ({ children }) => {
       setBooks(bookArr)
     })
 
-    return () => unsubScribe()
+    return () => unsubScribe();
+    // eslint-disable-next-line
   }, [])
   
 
