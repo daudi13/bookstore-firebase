@@ -22,7 +22,7 @@ const AlertBox = () => {
     })
   }
   return (
-    <Snackbar open autoHideDuration={3000} onClose={handleClose}>
+    <Snackbar open={alert.open} autoHideDuration={3000} onClose={handleClose}>
       <Alert onClose={handleClose} severity={alert.type} sx={{ width: '100%', margin: "0 auto" }}>
         {alert.message}
       </Alert>

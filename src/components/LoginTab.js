@@ -4,10 +4,12 @@ import { TextField, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import firebaseEngine from '../firebase';
+import { BookstoreState } from '../BookstoreContex';
 
 const LoginTab = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const { setAlert } = BookstoreState();
 
   const { auth } = firebaseEngine;
 
@@ -15,10 +17,18 @@ const LoginTab = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCreds) => {
         const user = userCreds.user
-        console.log(user.email);
+        setAlert({
+          open: true,
+          message: `You have successfully Logged in with ${user.email}`,
+          type: "success"
+        })
       })
       .catch((error) => {
-        console.log(error);
+        setAlert({
+          open: true,
+          message: `${error.message}`,
+          type: "error"
+        })
     })
   }
 

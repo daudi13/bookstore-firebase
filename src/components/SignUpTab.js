@@ -4,27 +4,41 @@ import { makeStyles } from 'tss-react/mui';
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import firebaseEngine from '../firebase';
+import { BookstoreState } from '../BookstoreContex';
 
 const SignUpTab = () => {
   const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [password, setPassword] = useState("");
+  const { setAlert } = BookstoreState();
 
   const { auth } = firebaseEngine;
 
   const handleSubmit = () => {
     if (password !== confirmPassword) {
-      console.log("passwords do not match")
+      setAlert({
+        open: true,
+        message: "Your passwords do not match",
+        type: "error"
+      })
       return;
     }
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCred) => {
         const user = userCred.user
-        console.log(user)
+        setAlert({
+        open: true,
+        message: `You've successfully created an account with ${user.email}`,
+        type: "success"
+      })
       })
       .catch((error) => {
-      console.log(error)
+      setAlert({
+        open: true,
+        message: `${error.message}`,
+        type: "error"
+      })
     })
   } 
 
