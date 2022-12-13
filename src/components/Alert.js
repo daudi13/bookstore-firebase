@@ -1,14 +1,14 @@
 import { Snackbar } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import React from 'react'
-import BookstoreContext from '../BookstoreContex';
+import { BookstoreState } from '../BookstoreContex';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
 })
 
 const AlertBox = () => {
-  const { alert, setAlert } = BookstoreContext();
+  const { alert, setAlert } = BookstoreState();
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
