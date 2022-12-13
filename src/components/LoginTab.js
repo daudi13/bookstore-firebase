@@ -34,8 +34,8 @@ const LoginTab = () => {
       />
       <TextField
       variant='outlined'
-        type="password"
-        value={password}
+      type="password"
+      value={password}
       label="Enter password"
       onChange={(e) => setPassword(e.target.value)}
       fullWidth
