@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { collection, onSnapshot } from 'firebase/firestore';
-import db from './firebase'
+import firebaseEngine from './firebase';
 
 const Bookstore = createContext();
 
@@ -8,6 +8,7 @@ const BookstoreContext = ({ children }) => {
 
   const [books, setBooks] = useState([]);
   const [user, setUser] = useState(null);
+  const { db } = firebaseEngine;
 
 
   const booksCollectionRef = collection(db, "books");
