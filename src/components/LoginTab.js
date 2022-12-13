@@ -2,13 +2,23 @@ import React from 'react'
 import { makeStyles } from 'tss-react/mui';
 import { TextField, Button } from '@mui/material';
 import { Box } from '@mui/system';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import firebaseEngine from '../firebase';
 
 const LoginTab = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const handleSubmit = () => {
+  const { auth } = firebaseEngine;
 
+  const handleSubmit = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCreds) => {
+      const user = userCreds.user
+      })
+      .catch((error) => {
+        console.log(error);
+    })
   }
 
   const useStyle = makeStyles()(() => ({
