@@ -8,6 +8,12 @@ const BookstoreContext = ({ children }) => {
 
   const [books, setBooks] = useState([]);
   const [user, setUser] = useState(null);
+  const [alert, setAlert] = useState({
+    open: false,
+    message: "",
+    type: "",
+  });
+
   const { db } = firebaseEngine;
 
 
@@ -31,7 +37,9 @@ const BookstoreContext = ({ children }) => {
   return (
     <Bookstore.Provider value={{
       books,
-      booksCollectionRef
+      booksCollectionRef,
+      alert,
+      setAlert
     }}>
       {children}
     </Bookstore.Provider>
