@@ -3,6 +3,7 @@ import { makeStyles } from 'tss-react/mui';
 import React from 'react'; 
 import Header from './components/Header';
 import LoginPage from './pages/LoginPage';
+import AlertBox from './components/Alert';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
     <BrowserRouter>      
       <div className={classes.App}>
         <Header/>
+        <AlertBox/>
         <div>
           <Routes>
             <Route path='/' element={<LoginPage/>} exact />
