@@ -14,7 +14,8 @@ const LoginTab = () => {
   const handleSubmit = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCreds) => {
-      const user = userCreds.user
+        const user = userCreds.user
+        console.log(user.email);
       })
       .catch((error) => {
         console.log(error);
