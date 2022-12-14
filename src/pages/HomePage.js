@@ -20,6 +20,7 @@ const HomePage = () => {
   const [genre, setGenre] = useState("");
   const [currentChapter, setCurrentChapter] = useState(0);
   const [totalChapters, setTotalChapters] = useState(0);
+  const { db } = firebaseEngine;
 
   const IncreaseChapters = async (id, chapter, totalChapters) => {
     const booksDoc = doc(db, "books", id);
