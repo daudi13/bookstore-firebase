@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { collection, onSnapshot } from 'firebase/firestore';
+import { doc, onSnapshot } from 'firebase/firestore';
 import firebaseEngine from './firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const Bookstore = createContext();
 
@@ -14,32 +15,38 @@ const BookstoreContext = ({ children }) => {
     type: "",
   });
 
-  const { db } = firebaseEngine;
-
-
-  const booksCollectionRef = collection(db, "books");
+  const { db, auth } = firebaseEngine;
   
   useEffect(() => {
-    const booksCollectionRef = collection(db, "books");
-    const unsubScribe = onSnapshot(booksCollectionRef, (querySnapshot) => {
-      let bookArr = []
-      querySnapshot.forEach((doc) => {
-        bookArr.push({ ...doc.data(), id: doc.id })
-      });
-      setBooks(bookArr)
+    if (user) {
+    const booksCollectionRef = doc(db, "books", user.uid);
+      const unsubScribe = onSnapshot(booksCollectionRef, book => {
+        if (book.exists()) {
+        setBooks(book.data().books)
+      }
     })
-
-    return () => unsubScribe();
+      return () => unsubScribe();
+    }
     // eslint-disable-next-line
-  }, [])
+  }, [user])
+
+  console.log(books)
   
+  useEffect(() => {
+    onAuthStateChanged(auth, user => {
+      if (user) setUser(user)
+      else setUser(null)
+    })
+  })
+
+  console.log(user);
 
   return (
     <Bookstore.Provider value={{
       books,
-      booksCollectionRef,
       alert,
-      setAlert
+      setAlert,
+      user,
     }}>
       {children}
     </Bookstore.Provider>
