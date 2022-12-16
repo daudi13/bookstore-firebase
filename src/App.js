@@ -4,6 +4,7 @@ import React from 'react';
 import Header from './components/Header';
 import LoginPage from './pages/LoginPage';
 import AlertBox from './components/Alert';
+import HomePage from './pages/HomePage';
 
 
 function App() {
@@ -23,7 +24,8 @@ function App() {
         <AlertBox/>
         <div>
           <Routes>
-            <Route path='/' element={<LoginPage/>} exact />
+            <Route path='/' element={<LoginPage />} exact />
+            <Route path='/homepage' element={<HomePage/>} exact/>
           </Routes>
         </div>
       </div>
