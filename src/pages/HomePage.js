@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { addDoc, doc, updateDoc } from 'firebase/firestore';
+import { setDoc, doc, updateDoc } from 'firebase/firestore';
 import { BookstoreState } from '../BookstoreContex';
-import db from '../firebase';
 import { makeStyles } from 'tss-react/mui';
+import firebaseEngine from '../firebase';
+import uuid from 'react-uuid';
 
 
 const HomePage = () => {
@@ -14,7 +15,7 @@ const HomePage = () => {
   }))
 
 
-  const { books, booksCollectionRef } = BookstoreState();
+  const { books, user } = BookstoreState();
   const [title, setTitle] = useState("")
   const [bookAuthor, setBookAuthor] = useState("");
   const [genre, setGenre] = useState("");
@@ -22,8 +23,10 @@ const HomePage = () => {
   const [totalChapters, setTotalChapters] = useState(0);
   const { db } = firebaseEngine;
 
+  const booksCollectionRef = doc(db, "books", user.uid);
+
   const IncreaseChapters = async (id, chapter, totalChapters) => {
-    const booksDoc = doc(db, "books", id);
+    const booksDoc = doc(db, "books/books", id);
     const newFields = { currentChapter: +(chapter) < totalChapters ? +(chapter) + 1 : totalChapters};
     await updateDoc(booksDoc, newFields);
   }
@@ -34,8 +37,12 @@ const HomePage = () => {
     await updateDoc(booksDoc, newFields);
   }
 
+  
   const addNewBook = async () => {
-    await addDoc(booksCollectionRef, { bookName: title, author: bookAuthor, genre: genre, currentChapter: currentChapter, TotalChapters: totalChapters })
+    const bookDetails = { bookName: title, author: bookAuthor, genre: genre, currentChapter: currentChapter, TotalChapters: totalChapters, bookId: uuid() }
+    await setDoc(booksCollectionRef, {
+      books: books ? [...books, bookDetails] : [bookDetails]
+    })
     setGenre("");
     setTitle("");
     setTotalChapters("");
@@ -44,6 +51,7 @@ const HomePage = () => {
   }
 
   const { classes } = useStyle();
+  console.log(books)
 
   return (
     <div className={classes.App}>
@@ -85,10 +93,11 @@ const HomePage = () => {
               <h3>Total chapters: {book.currentChapter}</h3>
               <h3>Percentage: {((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%</h3>
               <div>
-              <button onClick={() => IncreaseChapters(book.id, book.currentChapter, book.TotalChapters)}>+chapters</button>
-              <button onClick={() => decreaseChapters(book.id, book.currentChapter)}>-chapters</button>
+              <button onClick={() => IncreaseChapters(book.bookId, book.currentChapter, book.TotalChapters)}>+chapters</button>
+              <button onClick={() => decreaseChapters(book.bookId, book.currentChapter)}>-chapters</button>
               </div>
             </div>
+            
           )
         })
       }
