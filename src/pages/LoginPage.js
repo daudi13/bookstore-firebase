@@ -9,12 +9,41 @@ import { makeStyles } from 'tss-react/mui';
 import GoogleButton from 'react-google-button';
 import LoginTab from '../components/LoginTab';
 import SignUpTab from '../components/SignUpTab';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import firebaseEngine from '../firebase';
+import { BookstoreState } from '../BookstoreContex';
+import { useNavigate } from 'react-router';
 
 const LoginPage = () => {
   const [value, setValue] = React.useState('1');
+  const { auth } = firebaseEngine;
+  const { setAlert } = BookstoreState();
+  const navigate = useNavigate();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  }
+
+  const provider = new GoogleAuthProvider();
+
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((userCred) => {
+        const user = userCred.user
+        setAlert({
+          open: true,
+          message: `You've successfully logged in ${user.displayName || user.email}`,
+          type: "success"
+        })
+        navigate("/homepage");
+      })
+      .catch((error) => {
+        setAlert({
+          open: true,
+          message: `${error.message}`,
+          type: "error"
+        });
+    })
   }
 
   const useStyle = makeStyles()(() => ({
@@ -39,7 +68,7 @@ const LoginPage = () => {
             <span>OR</span>
             <GoogleButton
               label='sign in with Google'
-              onClick={() => console.log("sign in with google")}
+              onClick={signInWithGoogle}
               style={{width: "80%"}}
             />
           </Box>
