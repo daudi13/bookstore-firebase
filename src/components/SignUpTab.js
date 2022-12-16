@@ -5,12 +5,14 @@ import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import firebaseEngine from '../firebase';
 import { BookstoreState } from '../BookstoreContex';
+import { useNavigate } from 'react-router';
 
 const SignUpTab = () => {
   const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [password, setPassword] = useState("");
   const { setAlert } = BookstoreState();
+  const navigate = useNavigate();
 
   const { auth } = firebaseEngine;
 
@@ -31,7 +33,8 @@ const SignUpTab = () => {
         open: true,
         message: `You've successfully created an account with ${user.email}`,
         type: "success"
-      })
+        })
+        navigate("/homepage");
       })
       .catch((error) => {
       setAlert({
