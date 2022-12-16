@@ -5,12 +5,13 @@ import { Box } from '@mui/system';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import firebaseEngine from '../firebase';
 import { BookstoreState } from '../BookstoreContex';
+import { useNavigate } from 'react-router';
 
 const LoginTab = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const { setAlert } = BookstoreState();
-
+  const navigate = useNavigate();
   const { auth } = firebaseEngine;
 
   const handleSubmit = () => {
@@ -22,6 +23,7 @@ const LoginTab = () => {
           message: `You have successfully Logged in with ${user.email}`,
           type: "success"
         })
+        navigate("/homepage")
       })
       .catch((error) => {
         setAlert({
