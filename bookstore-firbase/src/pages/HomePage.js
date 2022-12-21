@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addDoc, collection, serverTimestamp, doc, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { BookstoreState } from '../BookstoreContex';
 import { makeStyles } from 'tss-react/mui';
 import firebaseEngine from '../firebase';
@@ -48,6 +48,10 @@ const HomePage = () => {
     setCurrentChapter("")
   }
 
+  const deleteBook = async (id) => {
+    await deleteDoc(doc(db, "Books", id))
+  }
+
   const { classes } = useStyle();
   console.log(books)
 
@@ -90,10 +94,11 @@ const HomePage = () => {
               <h3>Total chapters: {book.TotalChapters}</h3>
               <h3>Current chapter: {book.currentChapter}</h3>
               <h3>Percentage: {((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%</h3>
-              <div>Engage
+              <div>
               <button onClick={() => IncreaseChapters(book.id, book.currentChapter, book.TotalChapters)}>+chapters</button>
               <button onClick={() => decreaseChapters(book.id, book.currentChapter)}>-chapters</button>
               </div>
+              <button onClick={() => deleteBook(book.id)}>Delete Book</button>
             </div>
             
           )
