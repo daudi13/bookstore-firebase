@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addDoc, collection, serverTimestamp, doc } from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp, doc, updateDoc } from 'firebase/firestore';
 import { BookstoreState } from '../BookstoreContex';
 import { makeStyles } from 'tss-react/mui';
 import firebaseEngine from '../firebase';
@@ -25,18 +25,18 @@ const HomePage = () => {
   const userId = user.uid;
   
   const booksCollectionRef = collection(db, "Books");
-  // const IncreaseChapters = async (id, chapter, totalChapters) => {
-  //   const booksDoc = doc(d);
-  //   console.log(booksDoc,`hey`)
-  //   const newFields = { currentChapter: +(chapter) < totalChapters ? +(chapter) + 1 : totalChapters };
-  //   await updateDoc(booksDoc, newFields);
-  // }
 
-  // const decreaseChapters = async (id, chapter) => {
-  //   const booksDoc = doc(db, "books", id);
-  //   const newFields = { currentChapter: +(chapter) > 0 ? +(chapter) - 1 : 0 };
-  //   await updateDoc(booksDoc, newFields);
-  // }
+  const IncreaseChapters = async (id, chapter, totalChapters) => {
+    const booksDoc = doc(db, "Books", id);
+    const newFields = { currentChapter: +(chapter) < totalChapters ? +(chapter) + 1 : totalChapters };
+    await updateDoc(booksDoc, newFields);
+  }
+
+  const decreaseChapters = async (id, chapter) => {
+    const booksDoc = doc(db, "Books", id);
+    const newFields = { currentChapter: +(chapter) > 0 ? +(chapter) - 1 : 0 };
+    await updateDoc(booksDoc, newFields);
+  }
 
   
   const addNewBook = async () => {
@@ -84,15 +84,15 @@ const HomePage = () => {
       {
         books.map((book) => {
           return (
-            <div key={book.bookId}>
+            <div key={book.id}>
               <h3>Book name: {book.bookName}</h3>
               <h3>Author: {book.author}</h3>
               <h3>Total chapters: {book.TotalChapters}</h3>
               <h3>Current chapter: {book.currentChapter}</h3>
               <h3>Percentage: {((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%</h3>
               <div>Engage
-              {/* <button onClick={() => IncreaseChapters(book.bookId, book.currentChapter, book.TotalChapters)}>+chapters</button>
-              <button onClick={() => decreaseChapters(book.bookId, book.currentChapter)}>-chapters</button> */}
+              <button onClick={() => IncreaseChapters(book.id, book.currentChapter, book.TotalChapters)}>+chapters</button>
+              <button onClick={() => decreaseChapters(book.id, book.currentChapter)}>-chapters</button>
               </div>
             </div>
             
