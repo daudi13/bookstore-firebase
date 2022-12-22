@@ -40,6 +40,10 @@ const LoginTab = () => {
       flexDirection: "column",
       gap: 20,
       alignItems: "center",
+      minWidth: "450px"
+    },
+    input: {
+      width: "100%"
     }
   }))
 
@@ -52,8 +56,10 @@ const LoginTab = () => {
       type="email"
       label="Enter email"
       value={email}
+      className={classes.input}
       onChange={(e) => setEmail(e.target.value)}
       fullWidth
+      
       />
       <TextField
       variant='outlined'
@@ -62,12 +68,14 @@ const LoginTab = () => {
       label="Enter password"
       onChange={(e) => setPassword(e.target.value)}
       fullWidth
+      className={classes.input}
       />
       <Button
         variant="contained"
         type="submit"
         size="large"
         onClick={handleSubmit}
+        fullWidth
       >
         login
       </Button>
