@@ -51,13 +51,24 @@ const LoginPage = () => {
       display: "flex",
       alignItems: "center",
       height: "100vh",
-      width: "100%",
       padding: 0,
-      margin: 0
+      margin: 0,
+      background: "linear-gradient(45deg, #fe6b8b 30%, #FF8E53 90%)"
     },
     tab: {
       backgroundColor: "#fff",
-      flex: 0.5
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      width: "100px",
+      borderRadius: "20px",
+      width: "520px",
+      margin: "40px",
+      boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.75)"
+    },
+    boxContainer: {
+      width: "100%",
+      
     },
     background: {
       backgroundImage: "url(./books.jpg)",
@@ -65,7 +76,7 @@ const LoginPage = () => {
       backgroundPosition: "center",
       height: "100vh",
       width: "100%",
-      flex: 0.5
+      flex: 1
     }
   }))
 
@@ -76,7 +87,7 @@ const LoginPage = () => {
       <Box className={classes.tab}>
         <TabContext value={value}>
           <Box className={classes.boxContainer}>
-            <Tabs value={value} onChange={handleChange} textColor="secondary" indicatorColor='secondary' centered>
+            <Tabs value={value} onChange={handleChange} textColor="secondary" indicatorColor='secondary' centered >
               <Tab label="login" value="1"/>
               <Tab label="sign up" value="2"/>
             </Tabs>
@@ -84,11 +95,11 @@ const LoginPage = () => {
           <TabPanel value='1'><LoginTab/></TabPanel>
           <TabPanel value='2'><SignUpTab/></TabPanel>
           <Box className={classes.google}>
-            <span>OR</span>
             <GoogleButton
               label='sign in with Google'
               onClick={signInWithGoogle}
-              style={{width: "80%"}}
+              style={{ minWidth: "450px", marginBottom: "30px" }}
+              fullWidth
             />
           </Box>
         </TabContext>
