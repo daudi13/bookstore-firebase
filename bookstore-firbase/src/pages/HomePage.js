@@ -3,7 +3,7 @@ import { addDoc, collection, serverTimestamp, doc, updateDoc, deleteDoc } from '
 import { BookstoreState } from '../BookstoreContex';
 import { makeStyles } from 'tss-react/mui';
 import firebaseEngine from '../firebase';
-import { Box, Button, Container, Typography } from '@mui/material';
+import { Box, Button, ButtonGroup, Container, Typography } from '@mui/material';
 
 
 const HomePage = () => {
@@ -121,10 +121,14 @@ const HomePage = () => {
               <Box className={classes.box}>
               <Typography variant='caption'>Current Chapter</Typography>
               <Typography variant='body1'>Chapter{book.currentChapter}</Typography>
-              <div>
-              <button onClick={() => IncreaseChapters(book.id, book.currentChapter, book.TotalChapters)}>+chapters</button>
-              <button onClick={() => decreaseChapters(book.id, book.currentChapter)}>-chapters</button>
-              </div>
+              <ButtonGroup
+              disableElevation
+              variant='contained'
+              aria-label="Disabled elevation buttons"
+              >
+              <Button onClick={() => IncreaseChapters(book.id, book.currentChapter, book.TotalChapters)}>+</Button>
+              <Button onClick={() => decreaseChapters(book.id, book.currentChapter)}>-</Button>
+              </ButtonGroup>
               </Box>
             </Container>
             
