@@ -20,7 +20,7 @@ const HomePage = () => {
       border: "1.5px solid black",
       padding: "20px",
       borderRadius: "10px",
-      width: "1200px",
+      width: "1000px",
       margin: "20px auto",
     },
     box: {
@@ -106,8 +106,8 @@ const HomePage = () => {
             <Container key={book.id} className={classes.wrapper}>
               <Box className={classes.box}>
               <h4>{book.genre}</h4>
-              <h3>Book name: {book.bookName}</h3>
-              <h3>Author: {book.author}</h3>
+              <h3>{book.bookName}</h3>
+              <h3>{book.author}</h3>
               <button onClick={() => deleteBook(book.id)}>Delete Book</button>
               </Box>
               <Box className={classes.box}>
