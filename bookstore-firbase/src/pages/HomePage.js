@@ -51,6 +51,9 @@ const HomePage = () => {
       fontFamily: "Montserrat",
       fontWeight: "bolder",
       fontSize: "18px",
+    },
+    chapter: {
+
     }
   }))
 
