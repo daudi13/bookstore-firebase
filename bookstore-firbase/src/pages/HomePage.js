@@ -21,6 +21,7 @@ const HomePage = () => {
       borderRadius: "10px",
       width: "1000px",
       margin: "20px auto",
+      boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.23)",
     },
     box: {
       textAlign: "start",
