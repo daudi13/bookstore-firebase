@@ -18,9 +18,10 @@ const HomePage = () => {
       alignItems: "center",
       justifyContent: "space-between",
       border: "1.5px solid black",
-      margin: " 20px",
       padding: "20px",
-      borderRadius: "10px"
+      borderRadius: "10px",
+      width: "1200px",
+      margin: "20px auto",
     },
     box: {
       textAlign: "start",
