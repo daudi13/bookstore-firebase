@@ -45,13 +45,20 @@ const SignUpTab = () => {
     })
   } 
 
-  const useStyle = makeStyles()(() => ({
+  const useStyle = makeStyles()((theme) => ({
     wrapper: {
       display: "flex",
       flexDirection: "column",
       gap: 20,
-      alignItems: "center"
-    }
+      alignItems: "center",
+      minWidth: "450px"
+    },
+    input: {
+      width: "100%",
+      [theme.breakpoints.down("sm")]: {
+        width: "300px"
+      },
+    },
   }))
 
   const { classes } = useStyle();
@@ -60,11 +67,11 @@ const SignUpTab = () => {
     <Box p={3} className={classes.wrapper}>
       <TextField
       variant='outlined'
-        type="email"
-        label="Enter email"
+      type="email"
+      label="Enter email"
       value={email}
         onChange={(e) => setEmail(e.target.value)}
-      fullWidth
+      className={classes.input}
       />
       <TextField
       variant='outlined'
@@ -72,6 +79,7 @@ const SignUpTab = () => {
       value={password}
       label="Enter password"
       onChange={(e) => setPassword(e.target.value)}
+      className={classes.input}
       fullWidth
       />
       <TextField
@@ -80,6 +88,7 @@ const SignUpTab = () => {
       type="password"
       value={confirmPassword}
       onChange={(e) => setConfirmPassword(e.target.value)}
+      className={classes.input}
       fullWidth
       />
       <Button

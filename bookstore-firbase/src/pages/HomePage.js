@@ -3,6 +3,8 @@ import { addDoc, collection, serverTimestamp, doc, updateDoc, deleteDoc } from '
 import { BookstoreState } from '../BookstoreContex';
 import { makeStyles } from 'tss-react/mui';
 import firebaseEngine from '../firebase';
+import { Box, Container } from '@mui/material';
+import { borderRadius } from '@mui/system';
 
 
 const HomePage = () => {
@@ -10,6 +12,18 @@ const HomePage = () => {
   const useStyle = makeStyles()(() => ({
     App: {
       textAlign: "center"
+    },
+    wrapper: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      border: "1.5px solid black",
+      margin: " 20px",
+      padding: "20px",
+      borderRadius: "10px"
+    },
+    box: {
+      textAlign: "start",
     }
   }))
 
@@ -88,18 +102,25 @@ const HomePage = () => {
       {
         books.map((book) => {
           return (
-            <div key={book.id}>
+            <Container key={book.id} className={classes.wrapper}>
+              <Box className={classes.box}>
+              <h4>{book.genre}</h4>
               <h3>Book name: {book.bookName}</h3>
               <h3>Author: {book.author}</h3>
-              <h3>Total chapters: {book.TotalChapters}</h3>
-              <h3>Current chapter: {book.currentChapter}</h3>
+              <button onClick={() => deleteBook(book.id)}>Delete Book</button>
+              </Box>
+              <Box className={classes.box}>
               <h3>Percentage: {((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%</h3>
+              </Box>
+              <Box className={classes.box}>
+              <h3>Current Chapter</h3>
+              <h3>chapter{book.currentChapter}</h3>
               <div>
               <button onClick={() => IncreaseChapters(book.id, book.currentChapter, book.TotalChapters)}>+chapters</button>
               <button onClick={() => decreaseChapters(book.id, book.currentChapter)}>-chapters</button>
               </div>
-              <button onClick={() => deleteBook(book.id)}>Delete Book</button>
-            </div>
+              </Box>
+            </Container>
             
           )
         })

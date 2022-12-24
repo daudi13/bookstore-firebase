@@ -26,7 +26,7 @@ const LoginPage = () => {
 
   const provider = new GoogleAuthProvider();
 
-  const signInWithGoogle = () => {
+  const signInWithGoogle = (theme) => {
     signInWithPopup(auth, provider)
       .then((userCred) => {
         const user = userCred.user
@@ -46,14 +46,17 @@ const LoginPage = () => {
     })
   }
 
-  const useStyle = makeStyles()(() => ({
+  const useStyle = makeStyles()((theme) => ({
     wrapper: {
       display: "flex",
       alignItems: "center",
       height: "100vh",
       padding: 0,
       margin: 0,
-      background: "linear-gradient(45deg, #fe6b8b 30%, #FF8E53 90%)"
+      background: "linear-gradient(45deg, #fe6b8b 30%, #FF8E53 90%)",
+      [theme.breakpoints.down("sm")]: {
+        overflow: "hidden"
+      }
     },
     tab: {
       backgroundColor: "#fff",
@@ -64,11 +67,14 @@ const LoginPage = () => {
       borderRadius: "20px",
       width: "520px",
       margin: "40px",
-      boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.75)"
+      boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.75)",
+      [theme.breakpoints.down("sm")]: {
+        width: "350px",
+        margin: "0 auto"
+      }
     },
     boxContainer: {
       width: "100%",
-      
     },
     background: {
       backgroundImage: "url(./books.jpg)",
@@ -76,7 +82,17 @@ const LoginPage = () => {
       backgroundPosition: "center",
       height: "100vh",
       width: "100%",
-      flex: 1
+      flex: 1,
+      [theme.breakpoints.down("sm")]: {
+        display: "none"
+      }
+    },
+    googleBtn: {
+      minWidth: "450px",
+      marginBottom: "30px",
+      [theme.breakpoints.down("sm")]: {
+        minWidth: "300px"
+      }
     }
   }))
 
@@ -98,8 +114,8 @@ const LoginPage = () => {
             <GoogleButton
               label='sign in with Google'
               onClick={signInWithGoogle}
-              style={{ minWidth: "450px", marginBottom: "30px" }}
-              fullWidth
+              className={classes.googleBtn}
+              style={{  }}
             />
           </Box>
         </TabContext>

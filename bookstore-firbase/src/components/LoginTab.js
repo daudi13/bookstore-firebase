@@ -34,16 +34,28 @@ const LoginTab = () => {
     })
   }
 
-  const useStyle = makeStyles()(() => ({
+  const useStyle = makeStyles()((theme) => ({
     wrapper: {
       display: "flex",
       flexDirection: "column",
       gap: 20,
       alignItems: "center",
-      minWidth: "450px"
+      minWidth: "450px",
+      [theme.breakpoints.down("sm")]: {
+        width: "300px"
+      }
     },
     input: {
-      width: "100%"
+      width: "100%",
+    [theme.breakpoints.down("sm")]: {
+        width: "300px"
+      }
+    },
+    button: {
+      width: "100%",
+      [theme.breakpoints.down("sm")]: {
+        width: "65%"
+      }
     }
   }))
 
@@ -75,7 +87,7 @@ const LoginTab = () => {
         type="submit"
         size="large"
         onClick={handleSubmit}
-        fullWidth
+        className={classes.button}
       >
         login
       </Button>
