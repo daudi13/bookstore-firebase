@@ -16,7 +16,6 @@ const HomePage = () => {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      border: "1.5px solid black",
       padding: "20px",
       borderRadius: "10px",
       width: "1000px",
@@ -30,7 +29,28 @@ const HomePage = () => {
       display: "flex",
       flexDirection: "column",
       textAlign: "start",
-      width: "150px"
+      width: "180px"
+    },
+    genre: {
+      fontFamily: "Montserrat",
+      color: "#3D3D3D",
+      fontWeight: "bold",
+      fontSize: "15px"
+    },
+    title: {
+      fontFamily: "Montserrat",
+      fontWeight: "bolder",
+      color: "#1aa7ec",
+      fontSize: "18px",
+    },
+    author: {
+      fontFamily: "Montserrat",
+      fontSize: "16px",
+    },
+    chapterTitle: {
+      fontFamily: "Montserrat",
+      fontWeight: "bolder",
+      fontSize: "18px",
     }
   }))
 
@@ -74,7 +94,6 @@ const HomePage = () => {
   }
 
   const { classes } = useStyle();
-  console.log(books)
 
   return (
     <div className={classes.App}>
@@ -111,17 +130,17 @@ const HomePage = () => {
           return (
             <Container key={book.id} className={classes.wrapper}>
               <Box className={classes.boxOne}>
-              <Typography variant='caption'>{book.genre}</Typography>
-              <Typography variant='body2'>{book.bookName}</Typography>
-              <Typography variant='caption'>{book.author}</Typography>
+              <Typography variant='caption' className={classes.genre}>{book.genre}</Typography>
+              <Typography variant='body2' className={classes.title}>{book.bookName}</Typography>
+              <Typography variant='caption' className={classes.author}>{book.author}</Typography>
               <Button variant='outlined' onClick={() => deleteBook(book.id)}>Delete Book</Button>
               </Box>
               <Box className={classes.box}>
               <Typography variant='body1'>{((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%</Typography>
               </Box>
               <Box className={classes.box}>
-              <Typography variant='caption'>Current Chapter</Typography>
-              <Typography variant='body1'>Chapter{book.currentChapter}</Typography>
+              <Typography variant='caption' className={classes.chapterTitle}>Current Chapter</Typography>
+              <Typography variant='body1' className={classes.chapter}>Chapter{book.currentChapter}</Typography>
               <ButtonGroup
               disableElevation
               variant='contained'
