@@ -4,6 +4,8 @@ import { BookstoreState } from '../BookstoreContex';
 import { makeStyles } from 'tss-react/mui';
 import firebaseEngine from '../firebase';
 import { Box, Button, ButtonGroup, Container, Typography } from '@mui/material';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 
 const HomePage = () => {
@@ -139,7 +141,10 @@ const HomePage = () => {
               <Button variant='outlined' onClick={() => deleteBook(book.id)}>Delete Book</Button>
               </Box>
               <Box className={classes.box}>
-              <Typography variant='body1'>{((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%</Typography>
+                <Box style={{ width: 80, height: 80 }}>
+                <CircularProgressbar value={((book.currentChapter/book.TotalChapters)*100).toFixed(0)} text={`${((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%`} />;
+                </Box>
+              {/* <Typography variant='body1'>{((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%</Typography> */}
               </Box>
               <Box className={classes.box}>
               <Typography variant='caption' className={classes.chapterTitle}>Current Chapter</Typography>
