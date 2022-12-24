@@ -3,8 +3,7 @@ import { addDoc, collection, serverTimestamp, doc, updateDoc, deleteDoc } from '
 import { BookstoreState } from '../BookstoreContex';
 import { makeStyles } from 'tss-react/mui';
 import firebaseEngine from '../firebase';
-import { Box, Container, Typography } from '@mui/material';
-import { borderRadius } from '@mui/system';
+import { Box, Button, Container, Typography } from '@mui/material';
 
 
 const HomePage = () => {
@@ -114,7 +113,7 @@ const HomePage = () => {
               <Typography variant='caption'>{book.genre}</Typography>
               <Typography variant='body2'>{book.bookName}</Typography>
               <Typography variant='caption'>{book.author}</Typography>
-              <button onClick={() => deleteBook(book.id)}>Delete Book</button>
+              <Button variant='outlined' onClick={() => deleteBook(book.id)}>Delete Book</Button>
               </Box>
               <Box className={classes.box}>
               <Typography variant='body1'>{((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%</Typography>
