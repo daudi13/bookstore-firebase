@@ -25,6 +25,12 @@ const HomePage = () => {
     },
     box: {
       textAlign: "start",
+    },
+    boxOne: {
+      display: "flex",
+      flexDirection: "column",
+      textAlign: "start",
+      width: "150px"
     }
   }))
 
@@ -104,7 +110,7 @@ const HomePage = () => {
         books.map((book) => {
           return (
             <Container key={book.id} className={classes.wrapper}>
-              <Box className={classes.box}>
+              <Box className={classes.boxOne}>
               <Typography variant='caption'>{book.genre}</Typography>
               <Typography variant='body2'>{book.bookName}</Typography>
               <Typography variant='caption'>{book.author}</Typography>
