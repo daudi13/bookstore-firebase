@@ -3,7 +3,7 @@ import { addDoc, collection, serverTimestamp, doc, updateDoc, deleteDoc } from '
 import { BookstoreState } from '../BookstoreContex';
 import { makeStyles } from 'tss-react/mui';
 import firebaseEngine from '../firebase';
-import { Box, Container } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { borderRadius } from '@mui/system';
 
 
@@ -105,17 +105,17 @@ const HomePage = () => {
           return (
             <Container key={book.id} className={classes.wrapper}>
               <Box className={classes.box}>
-              <h4>{book.genre}</h4>
-              <h3>{book.bookName}</h3>
-              <h3>{book.author}</h3>
+              <Typography variant='caption'>{book.genre}</Typography>
+              <Typography variant='body2'>{book.bookName}</Typography>
+              <Typography variant='caption'>{book.author}</Typography>
               <button onClick={() => deleteBook(book.id)}>Delete Book</button>
               </Box>
               <Box className={classes.box}>
-              <h3>Percentage: {((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%</h3>
+              <Typography variant='body1'>{((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%</Typography>
               </Box>
               <Box className={classes.box}>
-              <h3>Current Chapter</h3>
-              <h3>chapter{book.currentChapter}</h3>
+              <Typography variant='caption'>Current Chapter</Typography>
+              <Typography variant='body1'>Chapter{book.currentChapter}</Typography>
               <div>
               <button onClick={() => IncreaseChapters(book.id, book.currentChapter, book.TotalChapters)}>+chapters</button>
               <button onClick={() => decreaseChapters(book.id, book.currentChapter)}>-chapters</button>
