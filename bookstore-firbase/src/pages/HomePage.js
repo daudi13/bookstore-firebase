@@ -3,12 +3,14 @@ import { addDoc, collection, serverTimestamp, doc, updateDoc, deleteDoc } from '
 import { BookstoreState } from '../BookstoreContex';
 import { makeStyles } from 'tss-react/mui';
 import firebaseEngine from '../firebase';
-import { Box, Button, ButtonGroup, Container, Typography } from '@mui/material';
+import { Box, Button, ButtonGroup, Container, Modal, Typography } from '@mui/material';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 
 const HomePage = () => {
+
+  const [open, setOpen] = useState(false);
 
   const useStyle = makeStyles()(() => ({
     App: {
@@ -20,7 +22,7 @@ const HomePage = () => {
       justifyContent: "space-between",
       padding: "20px",
       borderRadius: "10px",
-      width: "1000px",
+      width: "1150px",
       margin: "20px auto",
       boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.23)",
     },
@@ -100,36 +102,48 @@ const HomePage = () => {
 
   const { classes } = useStyle();
 
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
-    <div className={classes.App}>
-      <input
-      placeholder="Add book title"
-      value={title}
-      onChange={(e) =>{ setTitle( e.target.value)} }
-      />
-      <input
-      placeholder="Add book author"
-      value={bookAuthor}
-      onChange={(e) => { setBookAuthor(e.target.value)}}
-      />
-      <input
-      placeholder="Add book genres"
-      value={genre}
-      onChange={(e) => { setGenre(e.target.value)}}
-      />
-      <input
-      placeholder="Add total chapters"
-      type="number"
-      value={totalChapters}
-      onChange={(e) => {setTotalChapters(e.target.value)}}
-      />
-      <input
-      placeholder="Add current"
-      type="number"
-      value={currentChapter}
-      onChange={(e) => { setCurrentChapter(e.target.value)} }
-      />
-      <button onClick={addNewBook}>Add book</button>
+    <Container className={classes.App}>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box>
+          <input
+          placeholder="Add book title"
+          value={title}
+          onChange={(e) =>{ setTitle( e.target.value)} }
+          />
+          <input
+          placeholder="Add book author"
+          value={bookAuthor}
+          onChange={(e) => { setBookAuthor(e.target.value)}}
+          />
+          <input
+          placeholder="Add book genres"
+          value={genre}
+          onChange={(e) => { setGenre(e.target.value)}}
+          />
+          <input
+          placeholder="Add total chapters"
+          type="number"
+          value={totalChapters}
+          onChange={(e) => {setTotalChapters(e.target.value)}}
+          />
+          <input
+          placeholder="Add current"
+          type="number"
+          value={currentChapter}
+          onChange={(e) => { setCurrentChapter(e.target.value)} }
+          />
+          <button onClick={addNewBook}>Add book</button>
+        </Box>
+      </Modal>
       {
         books.map((book) => {
           return (
@@ -144,7 +158,6 @@ const HomePage = () => {
                 <Box style={{ width: 80, height: 80 }}>
                 <CircularProgressbar value={((book.currentChapter/book.TotalChapters)*100).toFixed(0)} text={`${((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%`} />;
                 </Box>
-              {/* <Typography variant='body1'>{((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%</Typography> */}
               </Box>
               <Box className={classes.box}>
               <Typography variant='caption' className={classes.chapterTitle}>Current Chapter</Typography>
@@ -163,7 +176,10 @@ const HomePage = () => {
           )
         })
       }
-    </div>
+      <Button variant='contained' onClick={handleOpen}>
+        Add Book
+      </Button>
+    </Container>
   );
 }
 
