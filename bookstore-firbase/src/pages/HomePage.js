@@ -58,6 +58,25 @@ const HomePage = () => {
     },
     chapter: {
 
+    },
+    modal: {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: 'translate(-50%, -50%)',
+      boxShadow: 24,
+      width: 500,
+      p: 24
+    },
+    form: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      padding: "20px",
+      width: "100%",
+      backgroundColor: "yellow",
+      gap: "10px",
+      borderRadius: "10px"
     }
   }))
 
@@ -113,35 +132,37 @@ const HomePage = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box>
-          <input
-          placeholder="Add book title"
-          value={title}
-          onChange={(e) =>{ setTitle( e.target.value)} }
-          />
-          <input
-          placeholder="Add book author"
-          value={bookAuthor}
-          onChange={(e) => { setBookAuthor(e.target.value)}}
-          />
-          <input
-          placeholder="Add book genres"
-          value={genre}
-          onChange={(e) => { setGenre(e.target.value)}}
-          />
-          <input
-          placeholder="Add total chapters"
-          type="number"
-          value={totalChapters}
-          onChange={(e) => {setTotalChapters(e.target.value)}}
-          />
-          <input
-          placeholder="Add current"
-          type="number"
-          value={currentChapter}
-          onChange={(e) => { setCurrentChapter(e.target.value)} }
-          />
-          <button onClick={addNewBook}>Add book</button>
+        <Box className={classes.modal}>
+          <Box className={classes.form}>
+            <input
+            placeholder="Add book title"
+            value={title}
+            onChange={(e) =>{ setTitle( e.target.value)} }
+            />
+            <input
+            placeholder="Add book author"
+            value={bookAuthor}
+            onChange={(e) => { setBookAuthor(e.target.value)}}
+            />
+            <input
+            placeholder="Add book genres"
+            value={genre}
+            onChange={(e) => { setGenre(e.target.value)}}
+            />
+            <input
+            placeholder="Add total chapters"
+            type="number"
+            value={totalChapters}
+            onChange={(e) => {setTotalChapters(e.target.value)}}
+            />
+            <input
+            placeholder="Add current"
+            type="number"
+            value={currentChapter}
+            onChange={(e) => { setCurrentChapter(e.target.value)} }
+            />
+            <button onClick={addNewBook}>Add book</button>
+          </Box>
         </Box>
       </Modal>
       {
