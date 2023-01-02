@@ -171,7 +171,7 @@ const HomePage = () => {
             fullWidth
             variant='outlined'
             />
-            <button onClick={addNewBook}>Add book</button>
+            <Button variant='contained' onClick={addNewBook}>Add book</Button>
           </Box>
         </Box>
       </Modal>
