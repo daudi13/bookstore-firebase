@@ -3,7 +3,7 @@ import { addDoc, collection, serverTimestamp, doc, updateDoc, deleteDoc } from '
 import { BookstoreState } from '../BookstoreContex';
 import { makeStyles } from 'tss-react/mui';
 import firebaseEngine from '../firebase';
-import { Box, Button, ButtonGroup, Container, Modal, Typography } from '@mui/material';
+import { Box, Button, ButtonGroup, Container, Modal, TextField, Typography } from '@mui/material';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -74,7 +74,7 @@ const HomePage = () => {
       alignItems: "center",
       padding: "20px",
       width: "100%",
-      backgroundColor: "yellow",
+      backgroundColor: "white",
       gap: "10px",
       borderRadius: "10px"
     }
@@ -134,33 +134,42 @@ const HomePage = () => {
       >
         <Box className={classes.modal}>
           <Box className={classes.form}>
-            <input
-            placeholder="Add book title"
-              value={title}
-            onChange={(e) =>{ setTitle( e.target.value)} }
-            
+            <TextField
+            label="Add book title"
+            value={title}
+            onChange={(e) => { setTitle(e.target.value) }}
+            fullWidth
+            variant='outlined'
             />
-            <input
-            placeholder="Add book author"
+            <TextField
+            label="Add book author"
             value={bookAuthor}
-            onChange={(e) => { setBookAuthor(e.target.value)}}
+            onChange={(e) => { setBookAuthor(e.target.value) }}
+            fullWidth
+            variant='outlined'
             />
-            <input
-            placeholder="Add book genres"
+            <TextField
+            label="Add book genres"
             value={genre}
-            onChange={(e) => { setGenre(e.target.value)}}
+            onChange={(e) => { setGenre(e.target.value) }}
+            fullWidth
+            variant='outlined'
             />
-            <input
-            placeholder="Add total chapters"
+            <TextField
+            label="Add total chapters"
             type="number"
             value={totalChapters}
-            onChange={(e) => {setTotalChapters(e.target.value)}}
+            onChange={(e) => { setTotalChapters(e.target.value) }}
+            fullWidth
+            variant='outlined'
             />
-            <input
-            placeholder="Add current"
+            <TextField
+            label="Add current"
             type="number"
             value={currentChapter}
-            onChange={(e) => { setCurrentChapter(e.target.value)} }
+            onChange={(e) => { setCurrentChapter(e.target.value) }}
+            fullWidth
+            variant='outlined'
             />
             <button onClick={addNewBook}>Add book</button>
           </Box>
@@ -178,7 +187,7 @@ const HomePage = () => {
               </Box>
               <Box className={classes.box}>
                 <Box style={{ width: 80, height: 80 }}>
-                <CircularProgressbar value={((book.currentChapter/book.TotalChapters)*100).toFixed(0)} text={`${((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%`} />
+                <CircularProgressbar value={((book.currentChapter/book.TotalChapters)*100).toFixed(0)} text={`${((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%`} />;
                 </Box>
               </Box>
               <Box className={classes.box}>
