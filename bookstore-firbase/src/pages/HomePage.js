@@ -136,8 +136,9 @@ const HomePage = () => {
           <Box className={classes.form}>
             <input
             placeholder="Add book title"
-            value={title}
+              value={title}
             onChange={(e) =>{ setTitle( e.target.value)} }
+            
             />
             <input
             placeholder="Add book author"
@@ -177,7 +178,7 @@ const HomePage = () => {
               </Box>
               <Box className={classes.box}>
                 <Box style={{ width: 80, height: 80 }}>
-                <CircularProgressbar value={((book.currentChapter/book.TotalChapters)*100).toFixed(0)} text={`${((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%`} />;
+                <CircularProgressbar value={((book.currentChapter/book.TotalChapters)*100).toFixed(0)} text={`${((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%`} />
                 </Box>
               </Box>
               <Box className={classes.box}>
