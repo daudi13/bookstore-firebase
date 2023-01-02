@@ -68,6 +68,10 @@ const HomePage = () => {
       width: 500,
       p: 24
     },
+    titleName: {
+      fontFamily: "Montserrat",
+      fontWeight: "boldest",
+    },
     form: {
       display: "flex",
       flexDirection: "column",
@@ -76,7 +80,8 @@ const HomePage = () => {
       width: "100%",
       backgroundColor: "white",
       gap: "10px",
-      borderRadius: "10px"
+      borderRadius: "10px",
+      boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.23)",
     }
   }))
 
@@ -134,26 +139,30 @@ const HomePage = () => {
       >
         <Box className={classes.modal}>
           <Box className={classes.form}>
+          <Typography variant='h6' className='titleName'>Add New Book</Typography>
             <TextField
             label="Add book title"
             value={title}
             onChange={(e) => { setTitle(e.target.value) }}
             fullWidth
-            variant='outlined'
+            variant='filled'
+            focused
             />
             <TextField
             label="Add book author"
             value={bookAuthor}
             onChange={(e) => { setBookAuthor(e.target.value) }}
             fullWidth
-            variant='outlined'
+            variant='filled'
+            focused
             />
             <TextField
             label="Add book genres"
             value={genre}
             onChange={(e) => { setGenre(e.target.value) }}
             fullWidth
-            variant='outlined'
+            variant='filled'
+            focused
             />
             <TextField
             label="Add total chapters"
@@ -161,7 +170,8 @@ const HomePage = () => {
             value={totalChapters}
             onChange={(e) => { setTotalChapters(e.target.value) }}
             fullWidth
-            variant='outlined'
+            variant='filled'
+            focused
             />
             <TextField
             label="Add current"
@@ -169,7 +179,8 @@ const HomePage = () => {
             value={currentChapter}
             onChange={(e) => { setCurrentChapter(e.target.value) }}
             fullWidth
-            variant='outlined'
+            variant='filled'
+            focused
             />
             <Button variant='contained' onClick={addNewBook}>Add book</Button>
           </Box>
