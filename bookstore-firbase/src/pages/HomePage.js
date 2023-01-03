@@ -6,11 +6,12 @@ import firebaseEngine from '../firebase';
 import { Box, Button, ButtonGroup, Container, Modal, TextField, Typography } from '@mui/material';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-
+import { useForm } from 'react-hook-form';
 
 const HomePage = () => {
 
   const [open, setOpen] = useState(false);
+  const {register, handleSubmit} = useForm();
 
   const useStyle = makeStyles()(() => ({
     App: {
@@ -87,11 +88,6 @@ const HomePage = () => {
 
 
   const { books, user } = BookstoreState();
-  const [title, setTitle] = useState("")
-  const [bookAuthor, setBookAuthor] = useState("");
-  const [genre, setGenre] = useState("");
-  const [currentChapter, setCurrentChapter] = useState(0);
-  const [totalChapters, setTotalChapters] = useState(0);
   const { db } = firebaseEngine;
 
   const userId = user.uid;
@@ -111,13 +107,8 @@ const HomePage = () => {
   }
 
   
-  const addNewBook = async () => {
-    await addDoc(booksCollectionRef, { bookName: title, author: bookAuthor, genre: genre, currentChapter: currentChapter, TotalChapters: totalChapters, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId)})
-    setGenre("");
-    setTitle("");
-    setTotalChapters("");
-    setBookAuthor("")
-    setCurrentChapter("")
+  const onSubmit = async (data) => {
+    await addDoc(booksCollectionRef, { ...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId)})
   }
 
   const deleteBook = async (id) => {
@@ -138,56 +129,46 @@ const HomePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box className={classes.modal}>
-          <form className={classes.form}>
+          <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <Typography variant='h6' className='titleName'>Add New Book</Typography>
             <TextField
             label="Add book title"
-            value={title}
-            onChange={(e) => { setTitle(e.target.value) }}
             fullWidth
             variant='filled'
             focused
-            required
+            {...register("bookName", {required: "Required"})}
             />
             <TextField
             label="Add book author"
-            value={bookAuthor}
-            onChange={(e) => { setBookAuthor(e.target.value) }}
             fullWidth
             variant='filled'
             focused
-            required
+            {...register("bookAuthor", {required: "Required"})}
             />
             <TextField
             label="Add book genres"
-            value={genre}
-            onChange={(e) => { setGenre(e.target.value) }}
             fullWidth
             variant='filled'
             focused
-            required
+            {...register("genre", {required: "Required"})}
             />
             <TextField
             label="Add total chapters"
             type="number"
-            value={totalChapters}
-            onChange={(e) => { setTotalChapters(e.target.value) }}
             fullWidth
             variant='filled'
             focused
-            required
+            {...register("totalChapters", {required: "Required"})}
             />
             <TextField
             label="Add current chapter"
             type="number"
-            value={currentChapter}
-            onChange={(e) => { setCurrentChapter(e.target.value) }}
             fullWidth
             variant='filled'
             focused
-            required
+            {...register("currentChapter", {required: "Required"})}
             />
-            <Button variant='contained' type="submit" onClick={addNewBook}>Add book</Button>
+            <Button variant='contained' type="submit">Add book</Button>
           </form>
         </Box>
       </Modal>
