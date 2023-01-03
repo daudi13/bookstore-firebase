@@ -70,7 +70,7 @@ const HomePage = () => {
     },
     titleName: {
       fontFamily: "Montserrat",
-      fontWeight: "boldest",
+      fontWeight: "700",
     },
     form: {
       display: "flex",
@@ -147,6 +147,7 @@ const HomePage = () => {
             fullWidth
             variant='filled'
             focused
+            required
             />
             <TextField
             label="Add book author"
@@ -155,6 +156,7 @@ const HomePage = () => {
             fullWidth
             variant='filled'
             focused
+            required
             />
             <TextField
             label="Add book genres"
@@ -163,6 +165,7 @@ const HomePage = () => {
             fullWidth
             variant='filled'
             focused
+            required
             />
             <TextField
             label="Add total chapters"
@@ -172,15 +175,17 @@ const HomePage = () => {
             fullWidth
             variant='filled'
             focused
+            required
             />
             <TextField
-            label="Add current"
+            label="Add current chapter"
             type="number"
             value={currentChapter}
             onChange={(e) => { setCurrentChapter(e.target.value) }}
             fullWidth
             variant='filled'
             focused
+            required
             />
             <Button variant='contained' onClick={addNewBook}>Add book</Button>
           </Box>
@@ -198,7 +203,7 @@ const HomePage = () => {
               </Box>
               <Box className={classes.box}>
                 <Box style={{ width: 80, height: 80 }}>
-                <CircularProgressbar value={((book.currentChapter/book.TotalChapters)*100).toFixed(0)} text={`${((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%`} />;
+                <CircularProgressbar value={((book.currentChapter/book.TotalChapters)*100).toFixed(0)} text={`${((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%`} />
                 </Box>
               </Box>
               <Box className={classes.box}>
