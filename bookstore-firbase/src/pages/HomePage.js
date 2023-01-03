@@ -138,7 +138,7 @@ const HomePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box className={classes.modal}>
-          <Box className={classes.form}>
+          <form className={classes.form}>
           <Typography variant='h6' className='titleName'>Add New Book</Typography>
             <TextField
             label="Add book title"
@@ -187,8 +187,8 @@ const HomePage = () => {
             focused
             required
             />
-            <Button variant='contained' onClick={addNewBook}>Add book</Button>
-          </Box>
+            <Button variant='contained' type="submit" onClick={addNewBook}>Add book</Button>
+          </form>
         </Box>
       </Modal>
       {
