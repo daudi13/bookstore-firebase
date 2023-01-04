@@ -174,7 +174,7 @@ const HomePage = () => {
         </Box>
       </Modal>
       {
-        books.map((book) => {
+        books.slice((page - 1) * 3, ((page - 1) * 3) + 3).map((book) => {
           return (
             <Container key={book.id} className={classes.wrapper}>
               <Box className={classes.boxOne}>
