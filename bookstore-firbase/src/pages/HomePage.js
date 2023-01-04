@@ -205,6 +205,18 @@ const HomePage = () => {
           )
         })
       }
+      {
+        books.length > 3 && 
+        <Pagination
+          count={Math.ceil(+(books.length) / 3) || 0}
+          variant="outlined"
+          classes={{ ul: classes.pagination }}
+          onChange={(_, value) => {
+            setPage(value);
+            window.scroll(0, 450)
+          } }
+        />
+      }
       <Button variant='contained' onClick={handleOpen}>
         Add Book
       </Button>
