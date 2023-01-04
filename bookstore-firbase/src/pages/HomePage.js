@@ -3,13 +3,14 @@ import { addDoc, collection, serverTimestamp, doc, updateDoc, deleteDoc } from '
 import { BookstoreState } from '../BookstoreContex';
 import { makeStyles } from 'tss-react/mui';
 import firebaseEngine from '../firebase';
-import { Box, Button, ButtonGroup, Container, Modal, TextField, Typography } from '@mui/material';
+import { Box, Button, ButtonGroup, Container, Modal, Pagination, TextField, Typography } from '@mui/material';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useForm } from 'react-hook-form';
 
 const HomePage = () => {
 
+  const [page, setPage] = useState(1);
   const [open, setOpen] = useState(false);
   const {register, handleSubmit} = useForm();
 
@@ -211,6 +212,13 @@ const HomePage = () => {
         <Pagination
           count={Math.ceil(+(books.length) / 3) || 0}
           variant="outlined"
+          style={{
+            padding: 20,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: 20
+          }}
           classes={{ ul: classes.pagination }}
           onChange={(_, value) => {
             setPage(value);
