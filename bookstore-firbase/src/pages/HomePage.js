@@ -96,7 +96,7 @@ const HomePage = () => {
 
   const IncreaseChapters = async (id, chapter, totalChapters) => {
     const booksDoc = doc(db, "Books", id);
-    const newFields = { currentChapter: +(chapter) < totalChapters ? +(chapter) + 1 : totalChapters };
+    const newFields = { currentChapter: +(chapter) < +(totalChapters) ? +(chapter) + 1 : totalChapters };
     await updateDoc(booksDoc, newFields);
   }
 
@@ -108,7 +108,8 @@ const HomePage = () => {
 
   
   const onSubmit = async (data) => {
-    await addDoc(booksCollectionRef, { ...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId)})
+    handleClose();
+    await addDoc(booksCollectionRef, { ...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId) })
   }
 
   const deleteBook = async (id) => {
@@ -143,7 +144,7 @@ const HomePage = () => {
             fullWidth
             variant='filled'
             focused
-            {...register("bookAuthor", {required: "Required"})}
+            {...register("author", {required: "Required"})}
             />
             <TextField
             label="Add book genres"
@@ -158,7 +159,7 @@ const HomePage = () => {
             fullWidth
             variant='filled'
             focused
-            {...register("totalChapters", {required: "Required"})}
+            {...register("TotalChapters", {required: "Required"})}
             />
             <TextField
             label="Add current chapter"
@@ -184,7 +185,7 @@ const HomePage = () => {
               </Box>
               <Box className={classes.box}>
                 <Box style={{ width: 80, height: 80 }}>
-                <CircularProgressbar value={((book.currentChapter/book.TotalChapters)*100).toFixed(0)} text={`${((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%`} />
+                <CircularProgressbar value={(Number(book.currentChapter/book.TotalChapters)*100).toFixed(0)} text={`${((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%`} />
                 </Box>
               </Box>
               <Box className={classes.box}>
