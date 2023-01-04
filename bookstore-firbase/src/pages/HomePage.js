@@ -114,6 +114,7 @@ const HomePage = () => {
 
   const deleteBook = async (id) => {
     await deleteDoc(doc(db, "Books", id))
+    setPage(1)
   }
 
   const { classes } = useStyle();
