@@ -140,7 +140,7 @@ const HomePage = () => {
           <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <Typography variant='h6' className='titleName'>Add New Book</Typography>
             <TextField
-            label="Add book title"
+            label="Book title"
             fullWidth
             variant='filled'
             focused
@@ -149,7 +149,7 @@ const HomePage = () => {
             helperText={errors?.bookName ? errors.bookName.message : null}
             />
             <TextField
-            label="Add book author"
+            label="Book author"
             fullWidth
             variant='filled'
             focused
@@ -158,7 +158,7 @@ const HomePage = () => {
               helperText={errors?.author ? errors.author.message : null}
             />
             <TextField
-            label="Add book genres"
+            label="Book genres"
             fullWidth
             variant='filled'
             focused
