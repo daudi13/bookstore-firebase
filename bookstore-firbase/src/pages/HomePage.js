@@ -12,7 +12,7 @@ const HomePage = () => {
 
   const [page, setPage] = useState(1);
   const [open, setOpen] = useState(false);
-  const {register, handleSubmit} = useForm();
+  const { register, handleSubmit, formState: {errors} } = useForm();
 
   const useStyle = makeStyles()(() => ({
     App: {
@@ -144,21 +144,27 @@ const HomePage = () => {
             fullWidth
             variant='filled'
             focused
-            {...register("bookName", {required: "Required"})}
+            {...register("bookName", { required: "Add a Book title" })}
+            error={!!errors?.bookName}
+            helperText={errors?.bookName ? errors.bookName.message : null}
             />
             <TextField
             label="Add book author"
             fullWidth
             variant='filled'
             focused
-            {...register("author", {required: "Required"})}
+              {...register("author", { required: "Add Author name" })}
+              error={!!errors?.author}
+              helperText={errors?.author ? errors.author.message : null}
             />
             <TextField
             label="Add book genres"
             fullWidth
             variant='filled'
             focused
-            {...register("genre", {required: "Required"})}
+            {...register("genre", { required: "Add a Book genre" })}
+            error={!!errors?.genre}
+            helperText={errors?.genre ? errors.genre.message : null}
             />
             <TextField
             label="Add total chapters"
@@ -166,7 +172,9 @@ const HomePage = () => {
             fullWidth
             variant='filled'
             focused
-            {...register("TotalChapters", {required: "Required"})}
+            {...register("TotalChapters", { required: "Add total chapters" })}
+            error={!!errors?.TotalChapters}
+            helperText={errors?.TotalChapters ? errors.TotalChapters.message : null}
             />
             <TextField
             label="Add current chapter"
@@ -174,7 +182,9 @@ const HomePage = () => {
             fullWidth
             variant='filled'
             focused
-            {...register("currentChapter", {required: "Required"})}
+            {...register("currentChapter", { required: "Add your current chapter" })}
+            error={!!errors?.currentChapter}
+            helperText={errors?.currentChapter ? errors.currentChapter.message : null}
             />
             <Button variant='contained' type="submit">Add book</Button>
           </form>
