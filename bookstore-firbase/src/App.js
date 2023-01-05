@@ -5,9 +5,11 @@ import Header from './components/Header';
 import LoginPage from './pages/LoginPage';
 import AlertBox from './components/Alert';
 import HomePage from './pages/HomePage';
-
+import { BookstoreState } from './BookstoreContex';
 
 function App() {
+
+  const { user } = BookstoreState();
 
   const useStyle = makeStyles()(() => ({
     App: {
@@ -24,7 +26,7 @@ function App() {
         <AlertBox/>
         <div>
           <Routes>
-            <Route path='/' element={<LoginPage />} exact />
+            <Route path='/' element={user ? <HomePage/> : <LoginPage />} exact />
             <Route path='/homepage' element={<HomePage/>} exact/>
           </Routes>
         </div>

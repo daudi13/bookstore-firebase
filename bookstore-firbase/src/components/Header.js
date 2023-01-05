@@ -5,11 +5,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { makeStyles } from 'tss-react/mui';
-import BookstoreContext from '../BookstoreContex';
+import { BookstoreState } from '../BookstoreContex';
 
 export default function Header() {
 
-  const { user } = BookstoreContext;
+  const { user } = BookstoreState();
   const useStyle = makeStyles()(() => ({
     Appbar: {
       display: "flex",

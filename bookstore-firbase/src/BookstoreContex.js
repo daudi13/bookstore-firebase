@@ -32,7 +32,8 @@ const BookstoreContext = ({ children }) => {
     // eslint-disable-next-line
   }, [user])
 
-  console.log(books)
+  console.log(books);
+  console.log(user);
   
   useEffect(() => {
     onAuthStateChanged(auth, user => {
