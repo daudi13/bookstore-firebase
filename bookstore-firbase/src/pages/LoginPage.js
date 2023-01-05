@@ -34,6 +34,7 @@ const LoginPage = () => {
           message: `You've successfully logged in ${user.displayName || user.email}`,
           type: "success"
         })
+        
         navigate("/homepage");
       })
       .catch((error) => {

@@ -36,7 +36,10 @@ const BookstoreContext = ({ children }) => {
   
   useEffect(() => {
     onAuthStateChanged(auth, user => {
-      if (user) setUser(user)
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user))
+        setUser(user)
+      }
       else setUser(null)
     })
   })

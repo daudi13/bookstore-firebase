@@ -91,8 +91,10 @@ const HomePage = () => {
   }))
 
 
-  const { books, user } = BookstoreState();
+  const { books } = BookstoreState();
   const { db } = firebaseEngine;
+
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const userId = user.uid;
   
