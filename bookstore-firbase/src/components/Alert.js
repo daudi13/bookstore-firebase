@@ -18,7 +18,7 @@ const AlertBox = () => {
     setAlert({
       open: false,
       message: "",
-      type: ""
+      type: "success"
     })
   }
   return (

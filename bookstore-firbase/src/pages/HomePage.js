@@ -16,7 +16,10 @@ const HomePage = () => {
 
   const useStyle = makeStyles()(() => ({
     App: {
-      textAlign: "center"
+      textAlign: "center",
+    },
+    bodyWrapper: {
+      height: "600px",
     },
     wrapper: {
       display: "flex",
@@ -175,38 +178,40 @@ const HomePage = () => {
           </form>
         </Box>
       </Modal>
-      {
-        books.slice((page - 1) * 3, ((page - 1) * 3) + 3).map((book) => {
-          return (
-            <Container key={book.id} className={classes.wrapper}>
-              <Box className={classes.boxOne}>
-              <Typography variant='caption' className={classes.genre}>{book.genre}</Typography>
-              <Typography variant='body2' className={classes.title}>{book.bookName}</Typography>
-              <Typography variant='caption' className={classes.author}>{book.author}</Typography>
-              <Button variant='outlined' onClick={() => deleteBook(book.id)}>Delete Book</Button>
-              </Box>
-              <Box className={classes.box}>
-                <Box style={{ width: 80, height: 80 }}>
-                <CircularProgressbar value={(Number(book.currentChapter/book.TotalChapters)*100).toFixed(0)} text={`${((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%`} />
+      <Container className={classes.bodyWrapper}>
+        {
+          books.slice((page - 1) * 3, ((page - 1) * 3) + 3).map((book) => {
+            return (
+              <Container key={book.id} className={classes.wrapper}>
+                <Box className={classes.boxOne}>
+                <Typography variant='caption' className={classes.genre}>{book.genre}</Typography>
+                <Typography variant='body2' className={classes.title}>{book.bookName}</Typography>
+                <Typography variant='caption' className={classes.author}>{book.author}</Typography>
+                <Button variant='outlined' onClick={() => deleteBook(book.id)}>Delete Book</Button>
                 </Box>
-              </Box>
-              <Box className={classes.box}>
-              <Typography variant='caption' className={classes.chapterTitle}>Current Chapter</Typography>
-              <Typography variant='body1' className={classes.chapter}>Chapter{book.currentChapter}</Typography>
-              <ButtonGroup
-              disableElevation
-              variant='contained'
-              aria-label="Disabled elevation buttons"
-              >
-              <Button onClick={() => IncreaseChapters(book.id, book.currentChapter, book.TotalChapters)}>+</Button>
-              <Button onClick={() => decreaseChapters(book.id, book.currentChapter)}>-</Button>
-              </ButtonGroup>
-              </Box>
-            </Container>
-            
-          )
-        })
-      }
+                <Box className={classes.box}>
+                  <Box style={{ width: 80, height: 80 }}>
+                  <CircularProgressbar value={(Number(book.currentChapter/book.TotalChapters)*100).toFixed(0)} text={`${((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%`} />
+                  </Box>
+                </Box>
+                <Box className={classes.box}>
+                <Typography variant='caption' className={classes.chapterTitle}>Current Chapter</Typography>
+                <Typography variant='body1' className={classes.chapter}>Chapter{book.currentChapter}</Typography>
+                <ButtonGroup
+                disableElevation
+                variant='contained'
+                aria-label="Disabled elevation buttons"
+                >
+                <Button onClick={() => IncreaseChapters(book.id, book.currentChapter, book.TotalChapters)}>+</Button>
+                <Button onClick={() => decreaseChapters(book.id, book.currentChapter)}>-</Button>
+                </ButtonGroup>
+                </Box>
+              </Container>
+              
+            )
+          })
+        }
+      </Container>
       {
         books.length > 3 && 
         <Pagination
