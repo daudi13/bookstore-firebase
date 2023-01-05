@@ -6,10 +6,13 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { makeStyles } from 'tss-react/mui';
 import { BookstoreState } from '../BookstoreContex';
+import { signOut } from 'firebase/auth';
+import firebaseEngine from '../firebase'
 
 export default function Header() {
 
-  const { user } = BookstoreState();
+  const { user, setAlert } = BookstoreState();
+  const { auth } = firebaseEngine;
   const useStyle = makeStyles()(() => ({
     Appbar: {
       display: "flex",
@@ -17,6 +20,15 @@ export default function Header() {
       width: "100%"
     }
   }))
+
+  const logOut = () => {
+    signOut(auth);
+    setAlert({
+      open: true,
+      message: "You have successfully logged out",
+      type: "success"
+    })
+  }
 
   const { classes } = useStyle();
   return (
@@ -26,7 +38,7 @@ export default function Header() {
           <Typography variant="h6" component="div" className={classes.Appbar}>
             BookStoreCMS
           </Typography>
-          {user && <Button color="inherit">Login</Button>}
+          {user && <Button variant='outlined' onClick={logOut} color="inherit">Log out</Button>}
         </Toolbar>
       </AppBar>
     </Box>
