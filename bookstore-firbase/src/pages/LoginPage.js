@@ -25,7 +25,7 @@ const LoginPage = () => {
 
   const provider = new GoogleAuthProvider();
 
-  const signInWithGoogle = (theme) => {
+  const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((userCred) => {
         const user = userCred.user
