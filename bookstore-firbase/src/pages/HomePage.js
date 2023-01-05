@@ -167,7 +167,7 @@ const HomePage = () => {
             helperText={errors?.genre ? errors.genre.message : null}
             />
             <TextField
-            label="Add total chapters"
+            label="total chapters"
             type="number"
             fullWidth
             variant='filled'
@@ -177,7 +177,7 @@ const HomePage = () => {
             helperText={errors?.TotalChapters ? errors.TotalChapters.message : null}
             />
             <TextField
-            label="Add current chapter"
+            label="current chapter"
             type="number"
             fullWidth
             variant='filled'
