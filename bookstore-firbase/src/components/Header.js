@@ -8,6 +8,7 @@ import { makeStyles } from 'tss-react/mui';
 import { BookstoreState } from '../BookstoreContex';
 import { signOut } from 'firebase/auth';
 import firebaseEngine from '../firebase'
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
 
@@ -21,6 +22,9 @@ export default function Header() {
     }
   }))
 
+  const navigate = useNavigate();
+
+
   const logOut = () => {
     signOut(auth);
     setAlert({
@@ -28,6 +32,8 @@ export default function Header() {
       message: "You have successfully logged out",
       type: "success"
     })
+
+    navigate("/");
   }
 
   const { classes } = useStyle();
