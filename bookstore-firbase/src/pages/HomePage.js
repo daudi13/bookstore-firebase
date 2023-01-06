@@ -14,7 +14,7 @@ const HomePage = () => {
   const [open, setOpen] = useState(false);
   const { register, handleSubmit, formState: {errors} } = useForm();
 
-  const useStyle = makeStyles()(() => ({
+  const useStyle = makeStyles()((theme) => ({
     App: {
       textAlign: "center",
     },
@@ -30,15 +30,38 @@ const HomePage = () => {
       width: "1150px",
       margin: "20px auto",
       boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.23)",
+      [theme.breakpoints.down("md")]: {
+        width: "700px",
+      },
+      [theme.breakpoints.down("sm")]: {
+        position: "relative",
+        width: "380px",
+        flexDirection: "column",
+        gap: "20px"
+      },
     },
     box: {
       textAlign: "start",
+      [theme.breakpoints.down("sm")]: {
+        textAlign: "center",
+        marginBottom: "40px"
+      }
+    },
+    boxCircle: {
+      [theme.breakpoints.down("sm")]: {
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column"
+      }
     },
     boxOne: {
       display: "flex",
       flexDirection: "column",
       textAlign: "start",
-      width: "180px"
+      width: "180px",
+      [theme.breakpoints.down("sm")]: {
+        textAlign: "center",
+      }
     },
     genre: {
       fontFamily: "Montserrat",
@@ -87,6 +110,24 @@ const HomePage = () => {
       gap: "10px",
       borderRadius: "10px",
       boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.23)",
+    },
+    deleteBook: {
+      border: "1px solid red",
+      color: "red",
+      "&:hover": {
+        backgroundColor: "red",
+        color: "white",
+        border: "1px solid red"
+      },
+      [theme.breakpoints.down("sm")]: {
+        position: "absolute",
+        bottom: 0,
+        right: 0,
+        left: 0,
+        backgroundColor: "red",
+        color: "white",
+        border: "1px solid red"
+      }
     }
   }))
 
@@ -199,9 +240,9 @@ const HomePage = () => {
                 <Typography variant='caption' className={classes.genre}>{book.genre}</Typography>
                 <Typography variant='body2' className={classes.title}>{book.bookName}</Typography>
                 <Typography variant='caption' className={classes.author}>{book.author}</Typography>
-                <Button variant='outlined' onClick={() => deleteBook(book.id)}>Delete Book</Button>
+                <Button variant='outlined' className={classes.deleteBook} onClick={() => deleteBook(book.id)}>Delete Book</Button>
                 </Box>
-                <Box className={classes.box}>
+                <Box className={classes.boxCircle}>
                   <Box style={{ width: 80, height: 80 }}>
                   <CircularProgressbar value={(Number(book.currentChapter/book.TotalChapters)*100).toFixed(0)} text={`${((book.currentChapter/book.TotalChapters)*100).toFixed(0)}%`} />
                   </Box>
@@ -243,9 +284,9 @@ const HomePage = () => {
           } }
         />
       }
-      <Button variant='contained' onClick={handleOpen}>
+      {/* <Button variant='contained' onClick={handleOpen}>
         Add Book
-      </Button>
+      </Button> */}
     </Container>
   );
 }
