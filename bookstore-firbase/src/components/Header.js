@@ -32,7 +32,7 @@ export default function Header() {
       message: "You have successfully logged out",
       type: "success"
     })
-
+    localStorage.clear();
     navigate("/");
   }
 
