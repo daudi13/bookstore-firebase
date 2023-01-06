@@ -5,11 +5,8 @@ import Header from './components/Header';
 import LoginPage from './pages/LoginPage';
 import AlertBox from './components/Alert';
 import HomePage from './pages/HomePage';
-import { BookstoreState } from './BookstoreContex';
 
 function App() {
-
-  const { user } = BookstoreState();
 
   const useStyle = makeStyles()(() => ({
     App: {
