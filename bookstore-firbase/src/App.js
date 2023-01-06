@@ -26,7 +26,7 @@ function App() {
         <AlertBox/>
         <div>
           <Routes>
-            <Route path='/' element={user ? <HomePage/> : <LoginPage />} exact />
+            <Route path='/' element={<LoginPage />} exact />
             <Route path='/homepage' element={<HomePage/>} exact/>
           </Routes>
         </div>
