@@ -14,11 +14,18 @@ export default function Header() {
 
   const { user, setAlert } = BookstoreState();
   const { auth } = firebaseEngine;
+
+
   const useStyle = makeStyles()(() => ({
     Appbar: {
       display: "flex",
       alignItems: "center",
       width: "100%"
+    },
+    btn: {
+      padding: 0,
+      backgroundColor: "red",
+      width: "100px"
     }
   }))
 
@@ -44,7 +51,7 @@ export default function Header() {
           <Typography variant="h6" component="div" className={classes.Appbar}>
             BookStoreCMS
           </Typography>
-          {user && <Button variant='outlined' onClick={logOut} color="inherit">Log out</Button>}
+          {user && <Button variant='outlined' onClick={logOut} color="inherit" className={classes.btn}>Log out</Button>}
         </Toolbar>
       </AppBar>
     </Box>
