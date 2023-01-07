@@ -26,6 +26,12 @@ export default function Header() {
       padding: 0,
       backgroundColor: "red",
       width: "100px"
+    },
+    logo: {
+      cursor: "pointer",
+      display: "flex",
+      alignItems: "center",
+      width: "100%"
     }
   }))
 
@@ -47,8 +53,8 @@ export default function Header() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" className={classes.Appbar}>
+        <Toolbar className={classes.Appbar}>
+          <Typography variant="h6" component="div" className={classes.logo} onClick={logOut}>
             BookStoreCMS
           </Typography>
           {location.pathname === "/" ? " " : <Button variant='outlined' onClick={logOut} color="inherit" className={classes.btn}>Log out</Button>}
