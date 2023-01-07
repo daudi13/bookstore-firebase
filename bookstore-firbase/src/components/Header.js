@@ -8,13 +8,13 @@ import { makeStyles } from 'tss-react/mui';
 import { BookstoreState } from '../BookstoreContex';
 import { signOut } from 'firebase/auth';
 import firebaseEngine from '../firebase'
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Header() {
 
-  const { user, setAlert } = BookstoreState();
+  const { setAlert} = BookstoreState();
   const { auth } = firebaseEngine;
-
+  const location = useLocation()
 
   const useStyle = makeStyles()(() => ({
     Appbar: {
@@ -51,7 +51,7 @@ export default function Header() {
           <Typography variant="h6" component="div" className={classes.Appbar}>
             BookStoreCMS
           </Typography>
-          {user && <Button variant='outlined' onClick={logOut} color="inherit" className={classes.btn}>Log out</Button>}
+          {location.pathname === "/" ? " " : <Button variant='outlined' onClick={logOut} color="inherit" className={classes.btn}>Log out</Button>}
         </Toolbar>
       </AppBar>
     </Box>

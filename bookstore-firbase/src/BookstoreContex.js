@@ -53,6 +53,7 @@ const BookstoreContext = ({ children }) => {
       alert,
       setAlert,
       user,
+      setUser
     }}>
       {children}
     </Bookstore.Provider>
