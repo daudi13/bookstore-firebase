@@ -284,9 +284,9 @@ const HomePage = () => {
           } }
         />
       }
-      {/* <Button variant='contained' onClick={handleOpen}>
+      <Button variant='contained' onClick={handleOpen}>
         Add Book
-      </Button> */}
+      </Button>
     </Container>
   );
 }
