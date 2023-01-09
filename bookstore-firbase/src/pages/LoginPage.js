@@ -63,7 +63,6 @@ const LoginPage = () => {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      width: "100px",
       borderRadius: "20px",
       width: "520px",
       margin: "40px",
@@ -113,8 +112,8 @@ const LoginPage = () => {
           <Box className={classes.google}>
             <GoogleButton
               label='sign in with Google'
-              onClick={signInWithGoogle}
               className={classes.googleBtn}
+              onClick={signInWithGoogle}
               style={{  }}
             />
           </Box>
