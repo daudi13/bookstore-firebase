@@ -19,7 +19,7 @@ const HomePage = () => {
       textAlign: "center",
     },
     bodyWrapper: {
-      height: "600px",
+      minHeight: "600px",
     },
     wrapper: {
       display: "flex",
