@@ -52,9 +52,6 @@ export default function Header() {
       flexDirection: "column",
       padding: "20px",
       boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.23)",
-      [theme.breakpoints.down("sm")]: {
-        top: "55px"
-      }
     }
   }))
 
