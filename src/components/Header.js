@@ -3,7 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
 import { makeStyles } from 'tss-react/mui';
 import { BookstoreState } from '../BookstoreContex';
 import { signOut } from 'firebase/auth';
@@ -14,7 +14,8 @@ export default function Header() {
 
   const { setAlert} = BookstoreState();
   const { auth } = firebaseEngine;
-  const location = useLocation()
+  const location = useLocation();
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const useStyle = makeStyles()(() => ({
     Appbar: {
@@ -51,7 +52,12 @@ export default function Header() {
           <Typography variant="h6" component="div" className={classes.Appbar} onClick={logOut} style={{cursor: "pointer"}}>
             BookStoreCMS
           </Typography>
-          {location.pathname === "/" ? " " : <Button variant='outlined' onClick={logOut} color="inherit" className={classes.btn}>Log out</Button>}
+          {location.pathname === "/" ? " " :
+            <Avatar
+            className={classes.picture}
+            src={user.photoURL}
+            alt={user.displayName || user.email}
+          />}
         </Toolbar>
       </AppBar>
     </Box>
