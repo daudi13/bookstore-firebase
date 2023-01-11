@@ -39,7 +39,7 @@ const HomePage = () => {
       },
       [theme.breakpoints.down("sm")]: {
         position: "relative",
-        width: "380px",
+        width: "320px",
         flexDirection: "column",
         gap: "20px"
       },
