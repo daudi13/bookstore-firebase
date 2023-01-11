@@ -18,7 +18,7 @@ const Footer = () => {
   return (
     <Box className={classes.footer}>
       <Typography variant='caption' gutterBottom >
-        &#169; <Link href="">David Ouma</Link> | {date.getFullYear()} 
+        &#169; <Link href="https://github.com/daudi13/">David Ouma</Link> | {date.getFullYear()} 
       </Typography>
     </Box>
   )
