@@ -19,7 +19,11 @@ const HomePage = () => {
       textAlign: "center",
     },
     bodyWrapper: {
-      minHeight: "600px",
+      minHeight: "700px",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
     },
     wrapper: {
       display: "flex",
@@ -233,7 +237,7 @@ const HomePage = () => {
       </Modal>
       <Container className={classes.bodyWrapper}>
         {
-          books.slice((page - 1) * 3, ((page - 1) * 3) + 3).map((book) => {
+          books.length === 0 ?  "Please add your current read" : books.slice((page - 1) * 3, ((page - 1) * 3) + 3).map((book) => {
             return (
               <Container key={book.id} className={classes.wrapper}>
                 <Box className={classes.boxOne}>
