@@ -28,6 +28,7 @@ const HomePage = () => {
     wrapper: {
       display: "flex",
       alignItems: "center",
+      backgroundColor: "#f0fff0",
       justifyContent: "space-between",
       padding: "20px",
       borderRadius: "10px",
@@ -98,7 +99,11 @@ const HomePage = () => {
       transform: 'translate(-50%, -50%)',
       boxShadow: 24,
       width: 500,
-      p: 24
+      p: 24,
+      [theme.breakpoints.down("sm")]: {
+        width: 300,
+        left: "45%",
+      }
     },
     titleName: {
       fontFamily: "Montserrat",
@@ -253,7 +258,7 @@ const HomePage = () => {
                 </Box>
                 <Box className={classes.box}>
                 <Typography variant='caption' className={classes.chapterTitle}>Current Chapter</Typography>
-                <Typography variant='body1' className={classes.chapter}>Chapter{book.currentChapter}</Typography>
+                <Typography variant='body1' className={classes.chapter}>Chapter {book.currentChapter}</Typography>
                 <ButtonGroup
                 disableElevation
                 variant='contained'
@@ -288,7 +293,7 @@ const HomePage = () => {
           } }
         />
       }
-      <Button variant='contained' onClick={handleOpen}>
+      <Button variant='contained' onClick={handleOpen} style={{marginBottom: "30px"}}>
         Add Book
       </Button>
     </Container>
