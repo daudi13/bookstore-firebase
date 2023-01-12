@@ -5,6 +5,7 @@ import Header from './components/Header';
 import LoginPage from './pages/LoginPage';
 import AlertBox from './components/Alert';
 import HomePage from './pages/HomePage';
+import Footer from './components/Footer';
 
 function App() {
   
@@ -28,6 +29,7 @@ function App() {
             <Route path='/homepage' element={<HomePage/>} exact/>
           </Routes>
         </div>
+        <Footer/>
       </div>
     </BrowserRouter>
   );
