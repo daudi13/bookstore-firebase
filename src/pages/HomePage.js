@@ -38,7 +38,7 @@ const HomePage = () => {
       backgroundColor: "rgba(255, 255, 255, 0.4)",
       backdropFilter: "blur(2px)",
       [theme.breakpoints.down("sm")]: {
-        height: "300vh"
+        height: "220vh"
       }
     },
     bodyWrapper: {
@@ -144,6 +144,12 @@ const HomePage = () => {
       gap: "10px",
       borderRadius: "10px",
       boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.23)",
+    },
+    pagination: {
+      "& .MuiPaginationItem-root": {
+        color: "white",
+        backgroundColor: "#1976d2"
+      },
     },
     deleteBook: {
       border: "1px solid red",
@@ -305,7 +311,7 @@ const HomePage = () => {
         books.length > 3 && 
         <Pagination
           count={Math.ceil(+(books.length) / 3) || 0}
-          variant="outlined"
+          variant="contained"
           color="primary"
           style={{
             zIndex: 5,
