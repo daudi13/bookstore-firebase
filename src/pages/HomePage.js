@@ -37,6 +37,9 @@ const HomePage = () => {
       width: "100vw",
       backgroundColor: "rgba(255, 255, 255, 0.4)",
       backdropFilter: "blur(2px)",
+      [theme.breakpoints.down("sm")]: {
+        height: "300vh"
+      }
     },
     bodyWrapper: {
       position: "relative",
