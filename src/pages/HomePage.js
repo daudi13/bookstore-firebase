@@ -24,6 +24,7 @@ const HomePage = () => {
       width: "100%",
       zIndex: "1",
       position: "relative",
+      overflowX: "hidden"
     },
     overlay: {
       position: "absolute",
@@ -302,6 +303,7 @@ const HomePage = () => {
         <Pagination
           count={Math.ceil(+(books.length) / 3) || 0}
           variant="outlined"
+          color="primary"
           style={{
             zIndex: 5,
             position: "relative",
