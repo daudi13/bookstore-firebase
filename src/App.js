@@ -29,7 +29,6 @@ function App() {
             <Route path='/homepage' element={<HomePage/>} exact/>
           </Routes>
         </div>
-        <Footer/>
       </div>
     </BrowserRouter>
   );

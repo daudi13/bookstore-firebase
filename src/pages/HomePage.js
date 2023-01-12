@@ -17,13 +17,34 @@ const HomePage = () => {
   const useStyle = makeStyles()((theme) => ({
     App: {
       textAlign: "center",
+      backgroundImage: "url(./books.jpg)",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      height: "100vh",
+      width: "100%",
+      zIndex: "1",
+      position: "relative",
+    },
+    overlay: {
+      position: "absolute",
+      zIndex: "3",
+      top: 0,
+      bottom: 0,
+      right: 0,
+      left: 0,
+      height: "100vh",
+      width: "100vw",
+      backgroundColor: "rgba(255, 255, 255, 0.4)",
+      backdropFilter: "blur(2px)",
     },
     bodyWrapper: {
+      position: "relative",
       minHeight: "700px",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
+      zIndex: "1000"
     },
     wrapper: {
       display: "flex",
@@ -179,7 +200,9 @@ const HomePage = () => {
   const handleClose = () => setOpen(false);
 
   return (
-    <Container className={classes.App}>
+    <Box className={classes.App}>
+      <Box className={classes.overlay}>
+      </Box>
       <Modal
         open={open}
         onClose={handleClose}
@@ -280,6 +303,8 @@ const HomePage = () => {
           count={Math.ceil(+(books.length) / 3) || 0}
           variant="outlined"
           style={{
+            zIndex: 5,
+            position: "relative",
             padding: 20,
             display: "flex",
             alignItems: "center",
@@ -293,10 +318,10 @@ const HomePage = () => {
           } }
         />
       }
-      <Button variant='contained' onClick={handleOpen} style={{marginBottom: "30px"}}>
+      <Button variant='contained' onClick={handleOpen} style={{marginBottom: "30px", position: "relative", zIndex: 5}}>
         Add Book
       </Button>
-    </Container>
+    </Box>
   );
 }
 
