@@ -1,6 +1,6 @@
 # Bookstore
 
-![](./public/images/Screenshot%20.png)
+![](./public/images/booksto.jpeg)
 The BookStoreCms is a website that enables a user to store their books in order and to keep track of them. A user can add, update and delete a book on the go, wherever they are so long as they have an internet connection.
 
 - Display a list of books.
@@ -8,7 +8,6 @@ The BookStoreCms is a website that enables a user to store their books in order 
 - Remove a selected book.
 
 Check the live demo [here](https://bookstorecms.vercel.app/)
-check the backend repo [here](https://github.com/daudi13/bookstoreAuthApi)
 
 ## Project List
 
@@ -27,7 +26,7 @@ check the backend repo [here](https://github.com/daudi13/bookstoreAuthApi)
 To get a local copy up and running follow the steps below
 
 ### 
-- clone this repo by copy pasting this on your terminal ``git clone https://github.com/daudi13/bookstore``
+- clone this repo by copy pasting this on your terminal ``https://github.com/daudi13/bookstore-firebase``
 
 - open the project folder 'cd bookstore'
 - Run 'npm install' to install all dependencies
@@ -41,7 +40,7 @@ To get a local copy up and running follow the steps below
 ## Contributing
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/daudi13/math-magician/issues)
+Feel free to check the [issues page](https://github.com/daudi13/bookstore-firebase/issues)
 
 ## Show your Support
 Give a star if you like this project!
