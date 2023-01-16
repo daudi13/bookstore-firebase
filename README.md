@@ -1,6 +1,6 @@
 # Bookstore
 
-![](./public/images/booksto.jpeg)
+![](./public/booksto.jpeg)
 The BookStoreCms is a website that enables a user to store their books in order and to keep track of them. A user can add, update and delete a book on the go, wherever they are so long as they have an internet connection.
 
 - Display a list of books.
