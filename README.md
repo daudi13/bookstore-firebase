@@ -9,13 +9,6 @@ The BookStoreCms is a website that enables a user to store their books in order 
 
 Check the live demo [here](https://bookstorecms.vercel.app/)
 
-## Project List
-
-- [x] Initialize project with components (React only).
-- [x] Add reducers and actions.
-- [x] Use Redux in React components.
-- [x] Connect to API.
-- [x] Styling.
 
 ## Built with
 - React
