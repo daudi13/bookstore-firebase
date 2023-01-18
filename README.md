@@ -12,7 +12,8 @@ Check the live demo [here](https://bookstorecms.vercel.app/)
 
 ## Built with
 - React
-- CSS3
+- Material Ui
+- Firebase
 - redux-toolkit
 
 ## Getting Started
